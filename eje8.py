@@ -20,8 +20,7 @@
 
 # !/usr/bin/python3
 
-import os, getopt, sys, signal
-
+import os, getopt, sys, signal, time
 
 def func():
     (opt, arg) = getopt.getopt(sys.argv[1:], 'p:', ['process='])
@@ -77,7 +76,11 @@ def function():
         pidchild.append(son)
 
     if os.getpid() == idfath:
+        time.sleep(1)
         signals(pidchild)
 
 # Iniciamos el programa...
 function()
+
+# CORRECCION "agregado "import time" y un time.sleep de 1 segundo para correjir el problema de que se me mostraban,
+# los proces los procesos hijos creados pero me mostraba 1 print menos del handler..."

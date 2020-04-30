@@ -21,9 +21,8 @@
 
 # !/usr/bin/python3
 
-import os
-import time
-import signal
+import os, time, signal
+# import sys
 from multiprocessing import Process
 
 
@@ -31,8 +30,10 @@ from multiprocessing import Process
 def handler(signum, frame):
     return
 
+
 # Utilizamos signal.signal para el registro de señales
 signal.signal(signal.SIGUSR1, handler)
+
 
 # Definimos "child1" para definir el proceso hijo 1
 def child1(pid_p):
@@ -43,6 +44,7 @@ def child1(pid_p):
         # y mostrará la cadena "Soy el hijo1 con PID=XXXX: ping" cada 5 segundos.
         time.sleep(5)
     # Mensaje que indica el fin del programa...
+
     print("--------------------- TERMINO EL EJERCICIO -----------------------")
 
 

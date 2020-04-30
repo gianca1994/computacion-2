@@ -9,9 +9,7 @@
 
 # !/usr/bin/python3
 
-import os
-import time
-import signal
+import os, time, signal
 
 
 # Primero definimos el proceso Hijo
@@ -44,7 +42,7 @@ if pid == 0:
 else:
     print('Proceso "Padre": Iniciando.')
     time.sleep(1)
-    # Utilizamos while para hacer el ciclo.
+    # Utilizamos for para hacer el ciclo.
     for x in range(10):
         os.kill(pid, signal.SIGUSR1)
         time.sleep(5)
