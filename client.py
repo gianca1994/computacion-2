@@ -8,7 +8,6 @@ def comm (connect, msg):
     resp = connect.recv(1024).decode('ascii')
     print('Respuesta del server:', resp)
 
-socket1 = socket.socket()
 
 def main():
 
@@ -31,7 +30,7 @@ def main():
 
     socket1.connect((host,port))
 
-    name = 'hello |' + input ('Ingrese su nombre: ').replace('','')
+    name = 'hello ' + input ('Ingrese su nombre: ').replace('','')
     comm(socket1, name)
     email = 'email |' + input('Ingrese su email: ')
     comm(socket1, email)
