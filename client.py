@@ -32,9 +32,9 @@ def main():
 
     name = 'hello ' + input ('Ingrese su nombre: ').replace('','')
     comm(socket1, name)
-    email = 'email |' + input('Ingrese su email: ')
+    email = 'email ' + input('Ingrese su email: ')
     comm(socket1, email)
-    key = 'key |' + input('Ingrese la clave: ')
+    key = 'key ' + input('Ingrese la clave: ')
     comm(socket1, key)
 
     print('cerrando conexion...')
