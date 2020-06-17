@@ -16,7 +16,6 @@ def read_options():
 
     # Definimos el array para tomar los 3 argumentos que ingresamos por teclado
     for (option, argument) in opt:
-
         # El argumento -a para designar a la ip que nos conectaremos
         if option == '-a':
             address = argument

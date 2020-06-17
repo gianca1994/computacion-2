@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import sys, getopt, socket, signal
+import sys, getopt, socket, signal, multiprocessing
 
 # Definimos la funcion "port", encargada de leer  el puerto que ingresamos al abrir el servidor
 def portarg():
@@ -18,6 +18,8 @@ def clientint(clientsock, address):
         # Con el if lo que hacemos es desencodear el mensaje enviado por el cliente
         if com.decode('ascii') == 'disconect':
             break
+    # Imprimimos en pantalla que el cliente se desconecto..
+    print('The ip', address, 'got disconnected')
     # Y se cierra el socket del cliente..
     clientsock.close()
 
@@ -50,5 +52,10 @@ def main():
         clientsock, address = sockserv.accept()
         # Nos imprime por consola la IP, del cliente que se conecto
         print("A client connected with the ip: ", address)
+
+        # Declaramos la variable y le decimos que targetee la funcion clientint y traiga las IPV4 de los clientes...
+        multiproces = multiprocessing.Process(target=clientint, args=(clientsock, address))
+        # Iniciamos el multi-proceso
+        multiproces.start()
 
 main()
