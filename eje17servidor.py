@@ -22,7 +22,7 @@ def inverted_chain(string: str) -> str:
     return string[::-1]
 
 # Definimos la funcion para atender las peticiones del cliente y le pasamos como parametros el sock del cliente y la ip.
-def read_client(csock, address):
+def read_client(csock):
     while True:
         # Desencodeamos el mensaje proveniente del cliente
         msg = csock.recv(2048).decode()
