@@ -21,7 +21,7 @@ def incoming_pac(consulting_rooms, med_times):
 
     # Actualizamos la variable y mostramos cuantos consultorios hay disponibles...
     room = consulting_rooms.get_value()
-    print("A patient retired, now there is", room, "consulting rooms)
+    print("A patient retired, now there is", room, "consulting rooms")
 
 def attended_pac(pac_times, med_times, consulting_rooms):
     i = 1
