@@ -1,8 +1,17 @@
 #!/usr/bin/python
 
-import getoptsys, time, string, os
-from multiprocessing import Bloq, Process
+import getopt, sys, time, string, os, threading
+from datetime import dtime
 
+
+def CreateLog(NumThread):
+    # En la variable Datime alojamos, la fecha y la hora
+    Datime = dtime.now().strftime("%d/%m/%Y %H:%M:%S")
+
+    # Abrimos el archivo "eje23ex19_LOG.txt" en el directorio "etc_23" en modo escritura
+    with open('etc_23/eje23ex19_LOG.txt', 'w') as file_LOG:
+        # Escribimos en el archivo los logs, tanto de la fecha y hora que se ejecuto, la cantida de hilos y la capturas de ps
+        file_LOG.write(f'Se ejecuto el : {Datime} y genero {NumThread} hilos\n')
 
 # Definimos option_oeading para que el cliente ingrese la la cantidad de procesos, iteraciones y el nombre del archivo.
 def option_reading():
@@ -53,20 +62,23 @@ def main():
     cant_process, cant_iterations, name_file = read_options()
     # A la variable alphabet le asignamos: (string.ascii_uppercase) que contiene todos los caracteres ASCII en mayúsculas
     alphabet = string.ascii_uppercase
-    blocking = Bloq()
-    list_proc = []
+
+    blocking = threading.Lock()
     # Eliminamos el archivo si esta en la ruta: os.path.isfile sino, lo lo creamos
     os.system('rm ' + name_file) if os.path.isfile(name_file) else os.system('touch ' + name_file)
 
     # Un for para recorrer el array generado por: (if opt == '-n': then --> cant_process = arg) la cantidad de argumentos
     for i in range(cant_process):
         # Creamos un nuevo proceso, targeteando a la funcion writing_letters y traemos como argumentos: "cant_iterations, abecedary, name_file, blocking"
-        proc = Process(target=writing_letters, args=(cant_iterations, alphabet[i], name_file, blocking))
+        proc = threading.Thread(target=writing_letters, args=(cant_iterations, alphabet[i], name_file, blocking))
         # Inicializamos el proceso.
         proc.start()
-        # A la lista de procesos le adjuntamos la variable process inicializada previamente..
-        list_proc.append(proc)
-    for j in list_proc:
+
+    # Ejecutamos la funcion para crear el log
+    CreateLog(len(threading.enumerate()))
+    for j in threading.enumerate():
+        if not j != threading.main_thread():
+            continue
         j.join()
 
 main()
