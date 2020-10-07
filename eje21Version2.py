@@ -8,7 +8,7 @@ def option_reading():
     # Aplicamos el getopt para tomar los argumentos que necesitamos
     (opt, arg) = getopt.getopt(sys.argv[1:], 's:', ['pac1=', 'pac2=', 'med1=', 'med2='])
 
-    # Valores por defecto...
+    # Valores por defecto y rangos en los que se van a mover las variables...
     pactiemp_min, pactiemp_max = (1,3)
     medtiemp_min, medtiemp_max = (5,7)
     consulting_rooms = 5
