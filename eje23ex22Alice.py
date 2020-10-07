@@ -21,10 +21,8 @@ def attend(Csocket, n, bloq):
     # Un while para:
     while True:
         # Escuchar
-        hear(Csocket)
         hear(Csocket, n)
         # Decir
-        tell(Csocket)
         tell(Csocket, n)
 
 
