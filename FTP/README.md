@@ -5,8 +5,11 @@ Cliente y servidor FTP - Computacion 2 - 2020
 ClienteFTP.py - Implementaciones:
 
 09/11/2020 - Se definio la funcion "option_reading" para leer la ip y puerto con los cuales, el cliente se conecta al servidor.
+
 09/11/2020 - Se definio el "main" para realizar todas las acciones.
+
 09/11/2020 - Se creo todo lo relacionado al socket.
+
 10/11/2020 - Se definio el bucle while dentro del (main), para enviarle al servidorFTP todos los comandos que el cliente quiera ejecutar.
 
 ServidorFTP.py - Implementaciones:
