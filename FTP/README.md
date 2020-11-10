@@ -4,14 +4,14 @@ Cliente y servidor FTP - Computacion 2 - 2020
 
 ClienteFTP.py - Implementaciones:
 
-09/11/2020 - Se definio la funcion "option_reading" para leer la ip y puerto con los cuales, el cliente se conecta al servidor.
-09/11/2020 - Se definio el "main" para realizar todas las acciones.
-09/11/2020 - Se creo todo lo relacionado al socket.
-10/11/2020 - Se definio el bucle while dentro del (main), para enviarle al servidorFTP todos los comandos que el cliente quiera ejecutar.
+09/11/2020 - Se definio la funcion "option_reading" para leer la ip y puerto con los cuales, el cliente se conecta al servidor.\n
+09/11/2020 - Se definio el "main" para realizar todas las acciones.\n
+09/11/2020 - Se creo todo lo relacionado al socket.\n
+10/11/2020 - Se definio el bucle while dentro del (main), para enviarle al servidorFTP todos los comandos que el cliente quiera ejecutar.\n
 
 ServidorFTP.py - Implementaciones:
 
-09/11/2020 - Se definio la funcion "option_reading" para leer el puerto sobre el cual, corre el servidor.
-09/11/2020 - Se definio la funcion "ClosedServer" para cerrar el servidor.
-09/11/2020 - Se creo la funcion main con todo las funcionalidades (Cargar la ip local y el puerto del option_reading, crear el socket TCP, quedarse esperando online hasta que un cliente se conecte y un while para aceptar las conexiones de los clientes usando multiprocessing para atender multiples clientes al mismo tiempo). 
-10/11/2020 - Se definio la funcion "clientint" para recibir los comandos del cliente y enviarle la respuesta a su peticion.
+09/11/2020 - Se definio la funcion "option_reading" para leer el puerto sobre el cual, corre el servidor.\n
+09/11/2020 - Se definio la funcion "ClosedServer" para cerrar el servidor.\n
+09/11/2020 - Se creo la funcion main con todo las funcionalidades (Cargar la ip local y el puerto del option_reading, crear el socket TCP, quedarse esperando online hasta que un cliente se conecte y un while para aceptar las conexiones de los clientes usando multiprocessing para atender multiples clientes al mismo tiempo).\n
+10/11/2020 - Se definio la funcion "clientint" para recibir los comandos del cliente y enviarle la respuesta a su peticion.\n
