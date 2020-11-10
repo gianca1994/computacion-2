@@ -1,9 +1,11 @@
 # !/usr/bin/python3
 
-import getopt, sys, socket, signal, multiprocessing, os
+import getopt, sys, socket, signal, multiprocessing, os, time
 
-ErrorCode = 500
-OkCode = 200
+ErrorCode = '500'
+OkCode = '200'
+ # Aca lo que hacemos es traer la IPV4, que seria la ip local del servidor usando el metodo "gethostbyname"
+ipv4 = socket.gethostbyname(socket.getfqdn())
 
 # Definimos option_reading para leer el puerto sobre el cual, el servidor FTP correra.
 def option_reading():
@@ -34,7 +36,6 @@ def option_reading():
     # Sino, retornamos los valores.
     return port
 
-
 # Definimos la funcion clientint para recibir los comandos del cliente, un Handler
 def clientint(Csocket, host):
     # El bucle while para que te deje ingresar diferentes comandos hasta que ingreses "exit"
@@ -42,12 +43,42 @@ def clientint(Csocket, host):
         # Desencodeamos el mensaje del cliente y entramos a la cadena de ifs.
         command = Csocket.recv(2048)
     
-        # PREGUNTAR AL PROFE, PORQUE ESTA EJECUCION LA HAGO EN EL CLIENTE...
-        # Si ingresa el comando exit, le enviamos al cliente el mensaje bye y cerramos la conexion.
-        if command.decode() == 'exit':
+        if command.decode() == 'pwd':
+            Csocket.send(ErrorCode.encode())
+            break
+
+        if command.decode() == 'lpwd':
             Csocket.send('Bye!'.encode())
             break
-        
+
+        if command.decode() == 'cd /ruta/':
+            Csocket.send('Bye!'.encode())
+            break
+
+        if command.decode() == 'lcd /ruta/':
+            Csocket.send('Bye!'.encode())
+            break
+
+        if command.decode() == 'ls':
+            Csocket.send('Bye!'.encode())
+            #os.system('lls')
+            #os.listdir()
+            # Csocket.send(ls)
+            #Csocket.send((ls).encode())
+            break
+
+        if command.decode() == 'lls':
+            Csocket.send('Bye!'.encode())
+            break
+
+        if command.decode() == 'get filename':
+            Csocket.send('Bye!'.encode())
+            break
+
+        if command.decode() == 'put filename':
+            Csocket.send('Bye!'.encode())
+            break
+            
         # Lista de comandos posibles a realizar en el serverFTP
         if command.decode() == 'help':
             Csocket.send(('Comandos disponibles:\n'
@@ -62,17 +93,23 @@ def clientint(Csocket, host):
                 'exit               Cierra la conexión con el servidor y termina el cliente.\n'
                 'help               Muestra esta ayuda.'
             ).encode())
-        
-        if command.decode() == 'ls':
-            Csocket.send(('ls').encode())
 
+        # PREGUNTAR AL PROFE, PORQUE ESTA EJECUCION LA HAGO EN EL CLIENTE...
+        # Si ingresa el comando exit, le enviamos al cliente el mensaje bye y cerramos la conexion.
+        if command.decode() == 'exit':
+            Csocket.send('Bye!'.encode())
+            break
+
+
+        else:
+            Csocket.send('It is not a valid command, to know the list of possible commands, type "help" and press enter'.encode())
 
     # Si el while deja de ser true, se cierra el socket (close conections)
     print('Client', host, 'disconnected')
     Csocket.close()
 
 # Definimos la funcion para cerrar el servidor
-def ClosedServer(s, frame):
+def ClosedServer():
     # Mostramos por consola del ServidorFTP que el servidor se ha cerrado.
     print("Server connection lost")
     # Cerramos el servidor
@@ -82,8 +119,6 @@ def main():
 
     # Declaramos el "Manejador de señales" para el cierre del servidor
     signal.signal(signal.SIGINT, ClosedServer)
-    # Aca lo que hacemos es traer la IPV4, que seria la ip local del servidor usando el metodo "gethostbyname"
-    ipv4 = socket.gethostbyname(socket.getfqdn())
     # Cargamos a la variables, los numeros leidos en el option reading
     port = option_reading()
 
@@ -93,6 +128,7 @@ def main():
     Ssocket.bind(('', port))
     # Imprimimos en la consola del servidor, la IP local y el puerto que designamos en el argumento de -p o --port
     print("Server turned on with ip ", ipv4, " and the port ", port, " (waiting for interaction)")
+
 
     while True:
         Ssocket.listen(16)

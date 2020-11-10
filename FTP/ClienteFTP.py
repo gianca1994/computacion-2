@@ -36,7 +36,7 @@ def main():
     Csocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     # Conectamos el cliente al servidor FTP y le printeamos la ip el puerto al cual fue conectado.
     Csocket.connect((host, port))
-    print('Connected to remote shell at', host, 'on port', port)
+    print('Connected to the FTP server at ip ', host,' and at port ', port)
 
     # Inicializamos la variable vacia
     command = ''
