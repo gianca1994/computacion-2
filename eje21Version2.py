@@ -33,7 +33,6 @@ def option_reading():
                 consulting_rooms = int(arg)
 
         return (pactiemp_min, pactiemp_max), (medtiemp_min, medtiemp_max), consulting_rooms
-
-    else
-        print("Error: Arguments must be whole numbers, positive greater than 0")
+    else:
+        print ("Error: Arguments must be whole numbers, positive greater than 0")
         sys.exit(0)

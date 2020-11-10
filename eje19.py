@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import getoptsys, time, string, os
+import getopt, sys, time, string, os
 from multiprocessing import Bloq, Process
 
 
