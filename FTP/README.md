@@ -12,6 +12,8 @@ ClienteFTP.py - Implementaciones:
 
 10/11/2020 - Se definio el bucle while dentro del (main), para enviarle al servidorFTP todos los comandos que el cliente quiera ejecutar.
 
+19/11/2020 - Comando "lss" para listar todos los archivos del directorio del cliente.
+
 
 
 ServidorFTP.py - Implementaciones:
@@ -23,3 +25,7 @@ ServidorFTP.py - Implementaciones:
 09/11/2020 - Se creo la funcion main con todo las funcionalidades (Cargar la ip local y el puerto del option_reading, crear el socket TCP, quedarse esperando online hasta que un cliente se conecte y un while para aceptar las conexiones de los clientes usando multiprocessing para atender multiples clientes al mismo tiempo).
 
 10/11/2020 - Se definio la funcion "clientint" para recibir los comandos del cliente y enviarle la respuesta a su peticion.
+
+14/11/2020 - Funcion "ls" para listar los archivos y directorios de una ruta en el servidor.
+
+16/11/2020 - Correcciones y emprolijamiento del codigo.

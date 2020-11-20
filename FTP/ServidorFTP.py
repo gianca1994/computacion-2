@@ -2,8 +2,8 @@
 
 import getopt, sys, socket, signal, multiprocessing, os, time
 
-ErrorCode = '500'
-OkCode = '200'
+ErrorCode = '500 Error'
+OkCode = '200 OK'
  # Aca lo que hacemos es traer la IPV4, que seria la ip local del servidor usando el metodo "gethostbyname"
 ipv4 = socket.gethostbyname(socket.getfqdn())
 
@@ -36,48 +36,29 @@ def option_reading():
     # Sino, retornamos los valores.
     return port
 
+# Funcion para listar los archivos del servidor FTP
+def ls(self, directorio=None):
+    # Almacenamos en la variable msg los archivos y directorios de la ruta
+    msg = os.listdir(directorio) if directorio else os.listdir()
+    # Almacenamos en la variable y decimos, si el mensaje es nulo entonces "none", sino, adjuntamos el mensaje
+    contenido = None if len(msg) == 0 else "\n".join(msg)
+    # Enviamos el codigo de OK + el listado de archivos y directorios
+    self.send_response(OkCode, contenido)
+
+
 # Definimos la funcion clientint para recibir los comandos del cliente, un Handler
 def clientint(Csocket, host):
     # El bucle while para que te deje ingresar diferentes comandos hasta que ingreses "exit"
     while True:
         # Desencodeamos el mensaje del cliente y entramos a la cadena de ifs.
         command = Csocket.recv(2048)
-    
-        if command.decode() == 'pwd':
-            Csocket.send(ErrorCode.encode())
-            break
-
-        if command.decode() == 'lpwd':
-            Csocket.send('Bye!'.encode())
-            break
-
-        if command.decode() == 'cd /ruta/':
-            Csocket.send('Bye!'.encode())
-            break
-
-        if command.decode() == 'lcd /ruta/':
-            Csocket.send('Bye!'.encode())
-            break
 
         if command.decode() == 'ls':
-            Csocket.send('Bye!'.encode())
-            #os.system('lls')
-            #os.listdir()
-            # Csocket.send(ls)
-            #Csocket.send((ls).encode())
+            #msg = ls("/")
+            Directorio = input("Indique el directorio en el cual quiere listar los archivos, o coloque (actual).")
+            Csocket.send(Directorio.encode())
             break
 
-        if command.decode() == 'lls':
-            Csocket.send('Bye!'.encode())
-            break
-
-        if command.decode() == 'get filename':
-            Csocket.send('Bye!'.encode())
-            break
-
-        if command.decode() == 'put filename':
-            Csocket.send('Bye!'.encode())
-            break
             
         # Lista de comandos posibles a realizar en el serverFTP
         if command.decode() == 'help':

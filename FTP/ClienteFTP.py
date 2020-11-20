@@ -1,6 +1,6 @@
 # !/usr/bin/python3
 
-import getopt, sys, socket
+import getopt, sys, socket, os
 
 # Definimos option_reading para leer el puerto sobre el cual, el servidor FTP correra.
 def option_reading():
@@ -45,10 +45,13 @@ def main():
     while command != 'exit':
         command = str(input('Msg>>> '))
         # Enviamos el mensaje del cliente al servidor
-        Csocket.send(command.encode())
-        # Desencodeamos la respuesta y la printeamos..
-        answer = Csocket.recv(4096).decode()
-        print(answer)
+        if (command == 'lss'):
+            print(os.listdir())
+        else:
+            Csocket.send(command.encode())
+            # Desencodeamos la respuesta y la printeamos..
+            answer = Csocket.recv(4096).decode()
+            print(answer)
     else:
         # Cerramos la conexion
         sys.exit(0)
