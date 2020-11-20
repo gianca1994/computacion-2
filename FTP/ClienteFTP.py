@@ -2,6 +2,9 @@
 
 import getopt, sys, socket, os
 
+ErrorCode = '500 Error\n\n'
+OkCode = '200 OK\n\n'
+
 # Definimos option_reading para leer el puerto sobre el cual, el servidor FTP correra.
 def option_reading():
     (opt, arg) = getopt.getopt(sys.argv[1:], 'h:p:', ['host=', 'port='])
@@ -44,12 +47,13 @@ def main():
     # Este bucle se va a repetir siempre y cuando el mensaje no sea "exit"
     while command != 'exit':
         command = str(input('Msg>>> '))
-        # Enviamos el mensaje del cliente al servidor
+        
         if (command == 'lss'):
-            print(os.listdir())
+            print(OkCode,os.listdir())
         elif (command == 'lpwd'):
-            print(os.system('pwd'))
+            print(OkCode,os.getcwd())
         else:
+            # Enviamos el mensaje del cliente al servidor
             Csocket.send(command.encode())
             # Desencodeamos la respuesta y la printeamos..
             answer = Csocket.recv(4096).decode()

@@ -2,8 +2,8 @@
 
 import getopt, sys, socket, signal, multiprocessing, os, time
 
-ErrorCode = '500 Error'
-OkCode = '200 OK'
+ErrorCode = '500 Error\n\n'
+OkCode = '200 OK\n\n'
  # Aca lo que hacemos es traer la IPV4, que seria la ip local del servidor usando el metodo "gethostbyname"
 ipv4 = socket.gethostbyname(socket.getfqdn())
 
@@ -43,7 +43,8 @@ def ls(self, directorio=None):
     # Almacenamos en la variable y decimos, si el mensaje es nulo entonces "none", sino, adjuntamos el mensaje
     contenido = None if len(msg) == 0 else "\n".join(msg)
     # Enviamos el codigo de OK + el listado de archivos y directorios
-    self.send_response(OkCode, contenido)
+    return contenido
+    #self.send_response(OkCode, contenido)
 
 
 # Definimos la funcion clientint para recibir los comandos del cliente, un Handler
@@ -54,12 +55,10 @@ def clientint(Csocket, host):
         command = Csocket.recv(2048)
 
         if command.decode() == 'ls':
-            msg=ls()
-            print(msg)
+            print(OkCode,os.listdir())
         
         if command.decode() == 'pwd':
-            print(os.system('pwd'))
-
+            print(OkCode,os.getcwd())
             
         # Lista de comandos posibles a realizar en el serverFTP
         if command.decode() == 'help':
@@ -79,7 +78,8 @@ def clientint(Csocket, host):
         # PREGUNTAR AL PROFE, PORQUE ESTA EJECUCION LA HAGO EN EL CLIENTE...
         # Si ingresa el comando exit, le enviamos al cliente el mensaje bye y cerramos la conexion.
         if command.decode() == 'exit':
-            Csocket.send('Bye!'.encode())
+            print(OkCode)
+            Csocket.send(('connection closed!').encode())
             break
 
         else:
