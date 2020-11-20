@@ -54,9 +54,6 @@ def clientint(Csocket, host):
         command = Csocket.recv(2048)
 
         if command.decode() == 'ls':
-            #msg = ls("/")
-            Directorio = input("Indique el directorio en el cual quiere listar los archivos, o coloque (actual).")
-            Csocket.send(Directorio.encode())
             break
 
             
@@ -80,7 +77,6 @@ def clientint(Csocket, host):
         if command.decode() == 'exit':
             Csocket.send('Bye!'.encode())
             break
-
 
         else:
             Csocket.send('It is not a valid command, to know the list of possible commands, type "help" and press enter'.encode())
