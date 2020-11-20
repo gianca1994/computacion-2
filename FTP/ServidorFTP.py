@@ -54,7 +54,11 @@ def clientint(Csocket, host):
         command = Csocket.recv(2048)
 
         if command.decode() == 'ls':
-            break
+            msg=ls()
+            print(msg)
+        
+        if command.decode() == 'pwd':
+            print(os.system('pwd'))
 
             
         # Lista de comandos posibles a realizar en el serverFTP

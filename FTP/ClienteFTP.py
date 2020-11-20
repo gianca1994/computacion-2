@@ -47,6 +47,8 @@ def main():
         # Enviamos el mensaje del cliente al servidor
         if (command == 'lss'):
             print(os.listdir())
+        elif (command == 'lpwd'):
+            print(os.system('pwd'))
         else:
             Csocket.send(command.encode())
             # Desencodeamos la respuesta y la printeamos..
