@@ -14,6 +14,8 @@ ClienteFTP.py - Implementaciones:
 
 19/11/2020 - Comando "lss" para listar todos los archivos del directorio del cliente.
 
+20/11/2020 - Comando "lss" y "lpwd" Funcionando.
+
 
 
 ServidorFTP.py - Implementaciones:
@@ -29,3 +31,5 @@ ServidorFTP.py - Implementaciones:
 14/11/2020 - Funcion "ls" para listar los archivos y directorios de una ruta en el servidor.
 
 16/11/2020 - Correcciones y emprolijamiento del codigo.
+
+21/11/2020 - Comando "ls" y "pwd" Funcionando (Ahora envia las listas empaquetadas al cliente y las muestra en el).
