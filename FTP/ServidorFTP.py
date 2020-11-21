@@ -36,6 +36,7 @@ def option_reading():
     # Sino, retornamos los valores.
     return port
 
+
 # Funcion para listar los archivos del servidor FTP
 def ls(self, directorio=None):
     # Almacenamos en la variable msg los archivos y directorios de la ruta
@@ -43,8 +44,7 @@ def ls(self, directorio=None):
     # Almacenamos en la variable y decimos, si el mensaje es nulo entonces "none", sino, adjuntamos el mensaje
     contenido = None if len(msg) == 0 else "\n".join(msg)
     # Enviamos el codigo de OK + el listado de archivos y directorios
-    return contenido
-    #self.send_response(OkCode, contenido)
+    self.send_response(OkCode, contenido)
 
 
 # Definimos la funcion clientint para recibir los comandos del cliente, un Handler
@@ -55,13 +55,15 @@ def clientint(Csocket, host):
         command = Csocket.recv(2048)
 
         if command.decode() == 'ls':
-            print(OkCode,os.listdir())
-        
-        if command.decode() == 'pwd':
-            print(OkCode,os.getcwd())
+            msg = "\n".join(os.listdir())
+            Csocket.send((OkCode + msg).encode())
+
+        elif command.decode() == 'pwd':
+            msg = OkCode + os.getcwd()
+            Csocket.send(msg.encode())
             
         # Lista de comandos posibles a realizar en el serverFTP
-        if command.decode() == 'help':
+        elif command.decode() == 'help':
             Csocket.send(('Comandos disponibles:\n'
                 'pwd                Retorna el directorio actual del servidor (comando remoto)\n'
                 'lpwd               Retorna el directorio actual del cliente (comando local)\n'
@@ -77,7 +79,7 @@ def clientint(Csocket, host):
 
         # PREGUNTAR AL PROFE, PORQUE ESTA EJECUCION LA HAGO EN EL CLIENTE...
         # Si ingresa el comando exit, le enviamos al cliente el mensaje bye y cerramos la conexion.
-        if command.decode() == 'exit':
+        elif command.decode() == 'exit':
             print(OkCode)
             Csocket.send(('connection closed!').encode())
             break

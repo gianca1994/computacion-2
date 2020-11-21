@@ -49,12 +49,14 @@ def main():
         command = str(input('Msg>>> '))
         
         if (command == 'lss'):
-            print(OkCode,os.listdir())
+            msg = "\n".join(os.listdir())
+            print(f"{OkCode}{msg}")
         elif (command == 'lpwd'):
-            print(OkCode,os.getcwd())
+            print(f'{ OkCode}{os.getcwd()}')
         else:
             # Enviamos el mensaje del cliente al servidor
             Csocket.send(command.encode())
+
             # Desencodeamos la respuesta y la printeamos..
             answer = Csocket.recv(4096).decode()
             print(answer)
