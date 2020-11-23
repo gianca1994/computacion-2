@@ -46,13 +46,20 @@ def main():
 
     # Este bucle se va a repetir siempre y cuando el mensaje no sea "exit"
     while command != 'exit':
-        command = str(input('Msg>>> '))
+        command = str(input('Message >>> '))
         
         if (command == 'lss'):
             msg = "\n".join(os.listdir())
             print(f"{OkCode}{msg}")
+            
         elif (command == 'lpwd'):
-            print(f'{ OkCode}{os.getcwd()}')
+            print(f'{OkCode}{os.getcwd()}')
+
+        elif (command == 'cd'):
+            rute = input('Ruta a la que quieres ir: ')
+            cdyrute = command.split() + rute.split()
+            Csocket.send(cdyrute.encode())
+
         else:
             # Enviamos el mensaje del cliente al servidor
             Csocket.send(command.encode())

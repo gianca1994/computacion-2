@@ -1,6 +1,7 @@
 # !/usr/bin/python3
 
 import getopt, sys, socket, signal, multiprocessing, os, time
+from time import sleep
 
 ErrorCode = '500 Error\n\n'
 OkCode = '200 OK\n\n'
@@ -56,10 +57,18 @@ def clientint(Csocket, host):
 
         if command.decode() == 'ls':
             msg = "\n".join(os.listdir())
+            sleep(1)
             Csocket.send((OkCode + msg).encode())
 
         elif command.decode() == 'pwd':
             msg = OkCode + os.getcwd()
+            sleep(1)
+            Csocket.send(msg.encode())
+        
+        elif command.decode() == []:
+            msg = OkCode + os.getcwd()
+            os.chdir(msg)
+            sleep(1)
             Csocket.send(msg.encode())
             
         # Lista de comandos posibles a realizar en el serverFTP
