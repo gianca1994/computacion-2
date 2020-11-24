@@ -16,6 +16,10 @@ ClienteFTP.py - Implementaciones:
 
 20/11/2020 - Comando "lss" y "lpwd" Funcionando.
 
+21/11/2020 - Comando "cd" no funcional.
+
+23/11/2020 - Comando "lcd" Funcionando.
+
 
 
 ServidorFTP.py - Implementaciones:
@@ -33,3 +37,5 @@ ServidorFTP.py - Implementaciones:
 16/11/2020 - Correcciones y emprolijamiento del codigo.
 
 21/11/2020 - Comando "ls" y "pwd" Funcionando (Ahora envia las listas empaquetadas al cliente y las muestra en el).
+
+22/11/2020 - Comando "cd" no funcional.

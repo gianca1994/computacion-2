@@ -54,11 +54,17 @@ def main():
             
         elif (command == 'lpwd'):
             print(f'{OkCode}{os.getcwd()}')
-
-        elif (command == 'cd'):
+        
+        elif (command == 'lcd'):
             rute = input('Ruta a la que quieres ir: ')
-            cdyrute = command.split() + rute.split()
-            Csocket.send(cdyrute.encode())
+            os.chdir(rute)
+            print(f'{OkCode}{os.getcwd()}')
+        
+   #     elif (command == 'cd'):
+   #         rute = input('Ruta a la que quieres ir: ')
+   #         cdyrute = command.split() + rute.split()
+   #         print (cdyrute)
+   #         Csocket.send(cdyrute.encode())
 
         else:
             # Enviamos el mensaje del cliente al servidor

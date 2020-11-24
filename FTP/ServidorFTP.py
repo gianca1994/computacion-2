@@ -65,11 +65,11 @@ def clientint(Csocket, host):
             sleep(1)
             Csocket.send(msg.encode())
         
-        elif command.decode() == []:
-            msg = OkCode + os.getcwd()
-            os.chdir(msg)
-            sleep(1)
-            Csocket.send(msg.encode())
+      #  elif command.decode() == 'cd':
+      #      msg = OkCode + os.getcwd()
+      #      os.chdir(msg)
+      #      sleep(1)
+      #      Csocket.send(msg.encode())
             
         # Lista de comandos posibles a realizar en el serverFTP
         elif command.decode() == 'help':
