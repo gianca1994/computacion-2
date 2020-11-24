@@ -58,7 +58,7 @@ def main():
         elif (command == 'lcd'):
             rute = input('Ruta a la que quieres ir: ')
             os.chdir(rute)
-            print(f'{OkCode}{os.getcwd()}')
+            print(f'{OkCode}Ruta actual: "{os.getcwd()}"')
         
    #     elif (command == 'cd'):
    #         rute = input('Ruta a la que quieres ir: ')
