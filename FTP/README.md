@@ -20,6 +20,12 @@ ClienteFTP.py - Implementaciones:
 
 23/11/2020 - Comando "lcd" Funcionando.
 
+24/11/2020 - Se cambio la toma de comandos ahora se hace un split para recibir mas de 1 parametro y si son mas parametros se almacenan en 2 variables.
+
+24/11/2020 - Se agregaron la toma de todos los comandos, para trabajarlos unitariamente 
+
+24/11/2020 - Comandos: lss, lpwd, lcd, exit funcionales.
+
 
 
 ServidorFTP.py - Implementaciones:
@@ -39,3 +45,5 @@ ServidorFTP.py - Implementaciones:
 21/11/2020 - Comando "ls" y "pwd" Funcionando (Ahora envia las listas empaquetadas al cliente y las muestra en el).
 
 22/11/2020 - Comando "cd" no funcional.
+
+24/11/2020 - Comandos: ls, pwd, help y exit funcionales.

@@ -1,7 +1,6 @@
 # !/usr/bin/python3
 
 import getopt, sys, socket, signal, multiprocessing, os, time
-from time import sleep
 
 ErrorCode = '500 Error\n\n'
 OkCode = '200 OK\n\n'
@@ -36,43 +35,32 @@ def option_reading():
     assert port is not None
     # Sino, retornamos los valores.
     return port
-
-
-# Funcion para listar los archivos del servidor FTP
-def ls(self, directorio=None):
-    # Almacenamos en la variable msg los archivos y directorios de la ruta
-    msg = os.listdir(directorio) if directorio else os.listdir()
-    # Almacenamos en la variable y decimos, si el mensaje es nulo entonces "none", sino, adjuntamos el mensaje
-    contenido = None if len(msg) == 0 else "\n".join(msg)
-    # Enviamos el codigo de OK + el listado de archivos y directorios
-    self.send_response(OkCode, contenido)
-
-
+    
 # Definimos la funcion clientint para recibir los comandos del cliente, un Handler
 def clientint(Csocket, host):
     # El bucle while para que te deje ingresar diferentes comandos hasta que ingreses "exit"
     while True:
         # Desencodeamos el mensaje del cliente y entramos a la cadena de ifs.
-        command = Csocket.recv(2048)
+        command = Csocket.recv(2048).decode()
 
-        if command.decode() == 'ls':
+        # Listamos los archivos del directorio actual y le enviamos el listado al cliente
+        if command == 'ls':
             msg = "\n".join(os.listdir())
-            sleep(1)
             Csocket.send((OkCode + msg).encode())
 
-        elif command.decode() == 'pwd':
+        # Guardamos en la variabl msg, el mensaje OK, el codigo y la ruta actual del servidor y se la enviamos al cliente
+        elif command == 'pwd':
             msg = OkCode + os.getcwd()
-            sleep(1)
             Csocket.send(msg.encode())
         
-      #  elif command.decode() == 'cd':
-      #      msg = OkCode + os.getcwd()
-      #      os.chdir(msg)
-      #      sleep(1)
-      #      Csocket.send(msg.encode())
+    #    elif command == 'cd':
+    #        msg = OkCode + os.getcwd()
+    #        os.chdir(msg)
+    #        sleep(1)
+    #        Csocket.send(msg.encode())
             
         # Lista de comandos posibles a realizar en el serverFTP
-        elif command.decode() == 'help':
+        elif command == 'help':
             Csocket.send(('Comandos disponibles:\n'
                 'pwd                Retorna el directorio actual del servidor (comando remoto)\n'
                 'lpwd               Retorna el directorio actual del cliente (comando local)\n'
@@ -88,7 +76,7 @@ def clientint(Csocket, host):
 
         # PREGUNTAR AL PROFE, PORQUE ESTA EJECUCION LA HAGO EN EL CLIENTE...
         # Si ingresa el comando exit, le enviamos al cliente el mensaje bye y cerramos la conexion.
-        elif command.decode() == 'exit':
+        elif command == 'exit':
             print(OkCode)
             Csocket.send(('connection closed!').encode())
             break
