@@ -2,6 +2,7 @@ Cliente y servidor FTP - Computacion 2 - 2020
 
 09/11/2020 - Se crearon los 2 archivos .py (ServidorFTP.py y ClienteFTP.py)
 
+
 ClienteFTP.py - Implementaciones:
 
 09/11/2020 - Se definio la funcion "option_reading" para leer la ip y puerto con los cuales, el cliente se conecta al servidor.
@@ -47,3 +48,5 @@ ServidorFTP.py - Implementaciones:
 22/11/2020 - Comando "cd" no funcional.
 
 24/11/2020 - Comandos: ls, pwd, help y exit funcionales.
+
+24/11/2020 - Comando cd funcional y correccion de posibles bug y errores como, el envio de un comando vacio o una ruta que no existe..

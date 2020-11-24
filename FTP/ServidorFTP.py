@@ -38,29 +38,42 @@ def option_reading():
     
 # Definimos la funcion clientint para recibir los comandos del cliente, un Handler
 def clientint(Csocket, host):
+
     # El bucle while para que te deje ingresar diferentes comandos hasta que ingreses "exit"
     while True:
+
+        comando = ''
+        argumento = ''
+
         # Desencodeamos el mensaje del cliente y entramos a la cadena de ifs.
-        command = Csocket.recv(2048).decode()
+        command = Csocket.recv(2048).decode().split()
+        
+         # El primer valor del input va a ser el comando
+        comando = (command[0])
+        # Y en caso de tener mas de 1 valor, entonces tomo como que el segundo valor es el argumento.
+        if len(command) > 1: argumento = (command[1])
 
         # Listamos los archivos del directorio actual y le enviamos el listado al cliente
-        if command == 'ls':
+        if comando == 'ls':
             msg = "\n".join(os.listdir())
             Csocket.send((OkCode + msg).encode())
 
         # Guardamos en la variabl msg, el mensaje OK, el codigo y la ruta actual del servidor y se la enviamos al cliente
-        elif command == 'pwd':
+        elif comando == 'pwd':
             msg = OkCode + os.getcwd()
             Csocket.send(msg.encode())
         
-    #    elif command == 'cd':
-    #        msg = OkCode + os.getcwd()
-    #        os.chdir(msg)
-    #        sleep(1)
-    #        Csocket.send(msg.encode())
-            
+        elif comando == 'cd':
+            try:
+                os.chdir(argumento)
+                msg = OkCode + os.getcwd()
+                Csocket.send(msg.encode())
+            except:
+                msg = ErrorCode + 'There was an error entering the path or the path does not exist'
+                Csocket.send(msg.encode())
+
         # Lista de comandos posibles a realizar en el serverFTP
-        elif command == 'help':
+        elif comando == 'help':
             Csocket.send(('Comandos disponibles:\n'
                 'pwd                Retorna el directorio actual del servidor (comando remoto)\n'
                 'lpwd               Retorna el directorio actual del cliente (comando local)\n'
@@ -76,7 +89,7 @@ def clientint(Csocket, host):
 
         # PREGUNTAR AL PROFE, PORQUE ESTA EJECUCION LA HAGO EN EL CLIENTE...
         # Si ingresa el comando exit, le enviamos al cliente el mensaje bye y cerramos la conexion.
-        elif command == 'exit':
+        elif comando == 'exit':
             print(OkCode)
             Csocket.send(('connection closed!').encode())
             break
