@@ -63,7 +63,7 @@ def main():
         # COMANDOS PARA TRABAJAR DE MANERA LOCAL
 
             # Listamos los archivos en el directorio actual del cliente
-            if (comando == 'lss'):
+            if (comando == 'lls'):
                 msg = "\n".join(os.listdir())
                 print(f"{OkCode}{msg}")
 
@@ -90,7 +90,6 @@ def main():
             # Nos movemos por las rutas del Servidor
             elif (comando == 'cd'):
                 comyruta = comando + ' ' + argumento
-                #print (comyruta)
                 Csocket.send(comyruta.encode())
                 answer = Csocket.recv(4096).decode()
                 print(answer)

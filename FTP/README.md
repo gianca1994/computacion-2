@@ -13,9 +13,9 @@ ClienteFTP.py - Implementaciones:
 
 10/11/2020 - Se definio el bucle while dentro del (main), para enviarle al servidorFTP todos los comandos que el cliente quiera ejecutar.
 
-19/11/2020 - Comando "lss" para listar todos los archivos del directorio del cliente.
+19/11/2020 - Comando "lls" para listar todos los archivos del directorio del cliente.
 
-20/11/2020 - Comando "lss" y "lpwd" Funcionando.
+20/11/2020 - Comando "lls" y "lpwd" Funcionando.
 
 21/11/2020 - Comando "cd" no funcional.
 

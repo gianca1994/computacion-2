@@ -48,7 +48,7 @@ def clientint(Csocket, host):
         # Desencodeamos el mensaje del cliente y entramos a la cadena de ifs.
         command = Csocket.recv(2048).decode().split()
         
-         # El primer valor del input va a ser el comando
+        # El primer valor del input va a ser el comando
         comando = (command[0])
         # Y en caso de tener mas de 1 valor, entonces tomo como que el segundo valor es el argumento.
         if len(command) > 1: argumento = (command[1])
@@ -63,11 +63,13 @@ def clientint(Csocket, host):
             msg = OkCode + os.getcwd()
             Csocket.send(msg.encode())
         
+        # Comando cd, para moverse entre rutas, remotamente en el servidor
         elif comando == 'cd':
             try:
                 os.chdir(argumento)
                 msg = OkCode + os.getcwd()
                 Csocket.send(msg.encode())
+            # En caso de que venga el comando y no traiga argumento, o que se produzca algun error como ruta invalida..
             except:
                 msg = ErrorCode + 'There was an error entering the path or the path does not exist'
                 Csocket.send(msg.encode())
