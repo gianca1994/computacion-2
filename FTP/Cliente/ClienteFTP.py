@@ -42,13 +42,14 @@ def main():
     Csocket.connect((host, port))
     print('Connected to the FTP server at ip ', host,' and at port ', port)
 
-    # Inicializamos las variables vacias
-    command = ''
-    comando = ''
-    argumento = ''
-
     # Este bucle se va a repetir siempre hasta que el usuario tipee "exit"
     while True:
+
+        # Inicializamos las variables vacias
+        command = ''
+        comando = ''
+        argumento = ''
+
         # Spliteo el command con un maximo de 1 split para poder pasar argumentos y comandos
         command = str(input('Message >>> ')).split(maxsplit=1)
 
@@ -93,6 +94,32 @@ def main():
                 Csocket.send(comyruta.encode())
                 answer = Csocket.recv(4096).decode()
                 print(answer)
+            
+            # Nos movemos por las rutas del Servidor
+#            elif (comando == 'put'):
+#                comyruta = comando + ' ' + argumento
+#                try:
+#                    archive = open(argumento, 'rb')
+#                    content = archive.read(1024)
+#
+#                    while (content):
+#                        Csocket.send(content)
+#                        content = archive.read(1024)
+#                    archive.close()
+#
+#                    print (content)
+#                except:
+#                    print(f'{ErrorCode}There was an error entering the path or the path does not exist')
+#
+#                # Cerrar conexión y archivo.
+#                Csocket.close()
+#                archive.close()
+#                print("El archivo ha sido enviado correctamente.")
+#
+#                print (comyruta)
+#                Csocket.send(comyruta.encode())
+#                answer = Csocket.recv(4096).decode()
+#                print(answer)
             
             # Si el mensaje tipeado es exit, le envio el comando al servidor
             elif (comando == 'exit'):

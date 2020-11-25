@@ -73,6 +73,23 @@ def clientint(Csocket, host):
             except:
                 msg = ErrorCode + 'There was an error entering the path or the path does not exist'
                 Csocket.send(msg.encode())
+        
+#        elif comando == 'put':
+#
+#            archive = open(argumento,'wb')
+#            content = Csocket.recv(1024)
+#
+#            while (content):
+#                print ("Receiving...")
+#                archive.write(content)
+#                content = Csocket.recv(1024)
+#
+#            archive.close()
+#            print ("Done Receiving")
+#            Csocket.send('Thank you for connecting')
+
+           # msg = OkCode + os.getcwd()
+           # Csocket.send(msg.encode())
 
         # Lista de comandos posibles a realizar en el serverFTP
         elif comando == 'help':

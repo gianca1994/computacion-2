@@ -27,6 +27,8 @@ ClienteFTP.py - Implementaciones:
 
 24/11/2020 - Comandos: lss, lpwd, lcd, exit funcionales.
 
+24/11/2020 - Comando put no funcional.
+
 
 
 ServidorFTP.py - Implementaciones:
@@ -50,3 +52,5 @@ ServidorFTP.py - Implementaciones:
 24/11/2020 - Comandos: ls, pwd, help y exit funcionales.
 
 24/11/2020 - Comando cd funcional y correccion de posibles bug y errores como, el envio de un comando vacio o una ruta que no existe..
+
+24/11/2020 - Comando put no funcional.
