@@ -3,10 +3,13 @@
 **Guia de uso:**
 
 -En el directorio "/FTP/Servidor" iniciar consola y tipear:
+
 -Python3 ServidorFTP.py -p 'Puerto deseado (debe ser mayor a 1000, para evitar puertos reservados)' - Ya tendremos el servidor ONLINE
 
 -En el directorio "/FTP/Cliente" iniciar consola y tipear:
+
 -Python3 ClienteFTP.py -h 'Ip del servidor' -p 'Puerto del servidor' - Ya tendremos el cliente conectado con el servidor.
+
 
 -Luego de esto, ya podremos ejecutar todos los comandos, para ver la lista de comandos tipear: 'Help (en el cliente)'
 
