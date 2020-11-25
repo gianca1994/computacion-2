@@ -1,6 +1,6 @@
-Cliente y servidor FTP - Computacion 2 - 2020
+**Cliente y servidor FTP - Computacion 2 - 2020**
 
-Guia de uso:
+**Guia de uso:**
 
 -En el directorio "/FTP/Servidor" iniciar consola y tipear:
 -Python3 ServidorFTP.py -p 'Puerto deseado (debe ser mayor a 1000, para evitar puertos reservados)' - Ya tendremos el servidor ONLINE
@@ -11,13 +11,14 @@ Guia de uso:
 -Luego de esto, ya podremos ejecutar todos los comandos, para ver la lista de comandos tipear: 'Help (en el cliente)'
 
 
-Cambios hechos:
+
+**Cambios hechos:**
 
 
 09/11/2020 - Se crearon los 2 archivos .py (ServidorFTP.py y ClienteFTP.py)
 
 
-ClienteFTP.py - Implementaciones:
+**ClienteFTP.py - Implementaciones:**
 
 09/11/2020 - Se definio la funcion "option_reading" para leer la ip y puerto con los cuales, el cliente se conecta al servidor.
 
@@ -45,7 +46,8 @@ ClienteFTP.py - Implementaciones:
 
 
 
-ServidorFTP.py - Implementaciones:
+
+**ServidorFTP.py - Implementaciones:**
 
 09/11/2020 - Se definio la funcion "option_reading" para leer el puerto sobre el cual, corre el servidor.
 
