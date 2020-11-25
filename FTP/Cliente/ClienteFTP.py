@@ -128,6 +128,12 @@ def main():
                 print(answer)
                 sys.exit(0)
 
+            #elif (comando == 'closedserver'):
+            #    Csocket.send(comando.encode())
+            #    answer = Csocket.recv(4096).decode()
+            #    print(answer)
+            #    sys.exit(0)
+
             else:
                 # Enviamos el mensaje del cliente al servidor
                 Csocket.send(comando.encode())

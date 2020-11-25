@@ -7,6 +7,10 @@ OkCode = '200 OK\n\n'
  # Aca lo que hacemos es traer la IPV4, que seria la ip local del servidor usando el metodo "gethostbyname"
 ipv4 = socket.gethostbyname(socket.getfqdn())
 
+# Variables para los errores en el tipeo de comandos o comandos erroneos
+CommandFail = 'It is not a valid command, to know the list of possible commands, type "help" and press enter'
+PathFail = 'There was an error entering the path or the path does not exist'
+
 # Definimos option_reading para leer el puerto sobre el cual, el servidor FTP correra.
 def option_reading():
     (opt, arg) = getopt.getopt(sys.argv[1:], 'p:', ['port='])
@@ -52,7 +56,7 @@ def clientint(Csocket, host):
         comando = (command[0])
         # Y en caso de tener mas de 1 valor, entonces tomo como que el segundo valor es el argumento.
         if len(command) > 1: argumento = (command[1])
-
+        
         # Listamos los archivos del directorio actual y le enviamos el listado al cliente
         if comando == 'ls':
             msg = "\n".join(os.listdir())
@@ -60,18 +64,18 @@ def clientint(Csocket, host):
 
         # Guardamos en la variabl msg, el mensaje OK, el codigo y la ruta actual del servidor y se la enviamos al cliente
         elif comando == 'pwd':
-            msg = OkCode + os.getcwd()
-            Csocket.send(msg.encode())
+            msg = os.getcwd()
+            Csocket.send((OkCode + msg).encode())
         
         # Comando cd, para moverse entre rutas, remotamente en el servidor
         elif comando == 'cd':
             try:
                 os.chdir(argumento)
-                msg = OkCode + os.getcwd()
-                Csocket.send(msg.encode())
+                msg = os.getcwd()
+                Csocket.send((OkCode + msg).encode())
             # En caso de que venga el comando y no traiga argumento, o que se produzca algun error como ruta invalida..
             except:
-                msg = ErrorCode + 'There was an error entering the path or the path does not exist'
+                msg = ErrorCode + PathFail
                 Csocket.send(msg.encode())
         
 #        elif comando == 'put':
@@ -109,21 +113,26 @@ def clientint(Csocket, host):
         # PREGUNTAR AL PROFE, PORQUE ESTA EJECUCION LA HAGO EN EL CLIENTE...
         # Si ingresa el comando exit, le enviamos al cliente el mensaje bye y cerramos la conexion.
         elif comando == 'exit':
-            print(OkCode)
             Csocket.send(('connection closed!').encode())
             break
+            
+        #elif comando == 'closeserver':
+        #    Csocket.send(('Servidor closed!').encode())
+        #    ClosedServer(Csocket)
+        #    break
 
         else:
-            Csocket.send('It is not a valid command, to know the list of possible commands, type "help" and press enter'.encode())
+            Csocket.send(CommandFail.encode())
 
     # Si el while deja de ser true, se cierra el socket (close conections)
     print('Client', host, 'disconnected')
     Csocket.close()
 
 # Definimos la funcion para cerrar el servidor
-def ClosedServer():
+def ClosedServer(Csocket):
     # Mostramos por consola del ServidorFTP que el servidor se ha cerrado.
     print("Server connection lost")
+    Csocket.close()
     # Cerramos el servidor
     sys.exit(0)
    

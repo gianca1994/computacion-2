@@ -1,5 +1,19 @@
 Cliente y servidor FTP - Computacion 2 - 2020
 
+Guia de uso:
+
+-En el directorio "/FTP/Servidor" iniciar consola y tipear:
+-Python3 ServidorFTP.py -p 'Puerto deseado (debe ser mayor a 1000, para evitar puertos reservados)' - Ya tendremos el servidor ONLINE
+
+-En el directorio "/FTP/Cliente" iniciar consola y tipear:
+-Python3 ClienteFTP.py -h 'Ip del servidor' -p 'Puerto del servidor' - Ya tendremos el cliente conectado con el servidor.
+
+-Luego de esto, ya podremos ejecutar todos los comandos, para ver la lista de comandos tipear: 'Help (en el cliente)'
+
+
+Cambios hechos:
+
+
 09/11/2020 - Se crearon los 2 archivos .py (ServidorFTP.py y ClienteFTP.py)
 
 
@@ -54,3 +68,6 @@ ServidorFTP.py - Implementaciones:
 24/11/2020 - Comando cd funcional y correccion de posibles bug y errores como, el envio de un comando vacio o una ruta que no existe..
 
 24/11/2020 - Comando put no funcional.
+
+
+
