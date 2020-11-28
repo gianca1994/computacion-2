@@ -93,28 +93,28 @@ def main():
                 comyruta = comando + ' ' + argumento
                 Csocket.send(comyruta.encode())
                 answer = Csocket.recv(4096).decode()
-                print(answer)
-            
-            # Nos movemos por las rutas del Servidor
-#            elif (comando == 'put'):
-#                comyruta = comando + ' ' + argumento
-#                try:
-#                    archive = open(argumento, 'rb')
-#                    content = archive.read(1024)
-#
-#                    while (content):
-#                        Csocket.send(content)
-#                        content = archive.read(1024)
-#                    archive.close()
-#
-#                    print (content)
-#                except:
-#                    print(f'{ErrorCode}There was an error entering the path or the path does not exist')
-#
-#                # Cerrar conexión y archivo.
-#                Csocket.close()
-#                archive.close()
-#                print("El archivo ha sido enviado correctamente.")
+                print(answer)          
+
+            # Comando para enviar archivos del cliente al servidor
+            elif (comando == 'put'):
+                comyruta = comando + ' ' + argumento
+                try:
+                    archive = open(argumento, 'rb')
+                    content = archive.read(1024)
+
+                    while (content):
+                        Csocket.send(content)
+                        content = archive.read(1024)
+                    archive.close()
+
+                    print (content)
+                except:
+                    print(f'{ErrorCode}There was an error entering the path or the path does not exist')
+
+                # Cerrar conexión y archivo.
+                Csocket.close()
+                archive.close()
+                print("El archivo ha sido enviado correctamente.")
 #
 #                print (comyruta)
 #                Csocket.send(comyruta.encode())

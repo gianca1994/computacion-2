@@ -14,8 +14,19 @@
 -Luego de esto, ya podremos ejecutar todos los comandos, para ver la lista de comandos tipear: 'Help (en el cliente)'
 
 
+**Especificaciones y mejoras:**
 
-**Cambios hechos:**
+- Se utilizo multiprocessing para poder atender a mas de 1 cliente al mismo tiempo.
+
+- Se puede mejorar utilizando encriptacion al enviar los paquetes para mayor seguridad
+
+- Trabajar con base de datos utilizando un login y permisos
+
+- Optimizar el rendimiento utilizando mapeo para evitar repeticion si el proyecto se extiende
+
+
+
+**Cambios realizados:**
 
 
 09/11/2020 - Se crearon los 2 archivos .py (ServidorFTP.py y ClienteFTP.py)
