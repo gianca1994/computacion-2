@@ -1,0 +1,25 @@
+**ClienteFTP.py - Implementaciones:**
+
+09/11/2020 - Se definio la funcion "option_reading" para leer la ip y puerto con los cuales, el cliente se conecta al servidor.
+
+09/11/2020 - Se definio el "main" para realizar todas las acciones.
+
+09/11/2020 - Se creo todo lo relacionado al socket.
+
+10/11/2020 - Se definio el bucle while dentro del (main), para enviarle al servidorFTP todos los comandos que el cliente quiera ejecutar.
+
+19/11/2020 - Comando "lls" para listar todos los archivos del directorio del cliente.
+
+20/11/2020 - Comando "lls" y "lpwd" Funcionando.
+
+21/11/2020 - Comando "cd" no funcional.
+
+23/11/2020 - Comando "lcd" Funcionando.
+
+24/11/2020 - Se cambio la toma de comandos ahora se hace un split para recibir mas de 1 parametro y si son mas parametros se almacenan en 2 variables.
+
+24/11/2020 - Se agregaron la toma de todos los comandos, para trabajarlos unitariamente 
+
+24/11/2020 - Comandos: lss, lpwd, lcd, exit funcionales.
+
+24/11/2020 - Comando put no funcional.

@@ -1,0 +1,23 @@
+**ServidorFTP.py - Implementaciones:**
+
+09/11/2020 - Se definio la funcion "option_reading" para leer el puerto sobre el cual, corre el servidor.
+
+09/11/2020 - Se definio la funcion "ClosedServer" para cerrar el servidor.
+
+09/11/2020 - Se creo la funcion main con todo las funcionalidades (Cargar la ip local y el puerto del option_reading, crear el socket TCP, quedarse esperando online hasta que un cliente se conecte y un while para aceptar las conexiones de los clientes usando multiprocessing para atender multiples clientes al mismo tiempo).
+
+10/11/2020 - Se definio la funcion "clientint" para recibir los comandos del cliente y enviarle la respuesta a su peticion.
+
+14/11/2020 - Funcion "ls" para listar los archivos y directorios de una ruta en el servidor.
+
+16/11/2020 - Correcciones y emprolijamiento del codigo.
+
+21/11/2020 - Comando "ls" y "pwd" Funcionando (Ahora envia las listas empaquetadas al cliente y las muestra en el).
+
+22/11/2020 - Comando "cd" no funcional.
+
+24/11/2020 - Comandos: ls, pwd, help y exit funcionales.
+
+24/11/2020 - Comando cd funcional y correccion de posibles bug y errores como, el envio de un comando vacio o una ruta que no existe..
+
+24/11/2020 - Comando put no funcional.
